@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SimpleTable from './components/SimpleTable';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 const App: React.FC = () => {
 // Define column definitions for the SimpleTable
@@ -107,10 +108,39 @@ const App: React.FC = () => {
       }
   ];
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (value:string) => {
+    setSearchTerm(value);
+  }
+
+  //Filter data based on the search term
+  const filteredData = data.filter((row) => 
+  row.employee_name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  // Sort the filtered data to prioritize records where the letters are at the beginning
+  const sortedData = [...filteredData].sort((a, b) => {
+    const aIndex = a.employee_name.toLowerCase().indexOf(searchTerm.toLowerCase());
+    const bIndex = b.employee_name.toLowerCase().indexOf(searchTerm.toLowerCase());
+
+    // Move the record with the search term closer to the beginning
+    return aIndex - bIndex;
+  });
+
   return (
     <div>
       <h1>Simple Table Component</h1>
-      <SimpleTable columnDefs={columnDefs} data={data} />
+      
+      {/* Search bar */}
+      {/* <input
+        type="text"
+        placeholder="Search by Employee Name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      /> */}
+      <SearchBar searchTerm={searchTerm} onChange={handleSearchChange}  />
+      <SimpleTable columnDefs={columnDefs} data={sortedData} />
+      
     </div>
   );
 };
