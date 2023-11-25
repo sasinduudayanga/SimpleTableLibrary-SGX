@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SimpleTable from './components/SimpleTable';
 import './App.css';
 import SearchBar from './components/SearchBar';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
 // Define column definitions for the SimpleTable
@@ -129,18 +130,13 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Simple Table Component</h1>
       
-      {/* Search bar */}
-      {/* <input
-        type="text"
-        placeholder="Search by Employee Name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      /> */}
+      <h1>Simple Table Component</h1>
+
       <SearchBar searchTerm={searchTerm} onChange={handleSearchChange}  />
       <SimpleTable columnDefs={columnDefs} data={sortedData} />
-      
+      <Footer />
+
     </div>
   );
 };

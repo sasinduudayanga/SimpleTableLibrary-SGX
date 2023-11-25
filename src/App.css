@@ -45,10 +45,33 @@ input {
   padding: 10px;
   width: 50%;
   box-sizing: border-box;
-  /* margin-bottom: 10px; */
   margin: 10px 15px 5px 15px ;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
 }
+
+select {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Styles for the footer */
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 97%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  background-color: #f5f5f5; /* Optional background color */
+  color: #333; /* Text color */
+  font-size: 14px;
+}
+
+
+
 
