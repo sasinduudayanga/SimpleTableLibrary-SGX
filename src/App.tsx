@@ -5,6 +5,21 @@ import SearchBar from './components/SearchBar';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
+
+// Sample cell renderer function
+const renderManagerDecision = (data: Record<string, any>): React.ReactElement => {
+    
+  // Customize the rendering logic based on the manager decision value
+  const decision = data['manager_decision'];
+  
+  if (decision === 'Approved') {
+    return <span style={{ color: 'green' }}>{decision}</span>;
+  } else if (decision === 'Pending') {
+    return <span style={{ color: 'orange' }}>{decision}</span>;
+  } else {
+    return <span style={{ color: 'red' }}>{decision}</span>;
+  }
+};  
 // Define column definitions for the SimpleTable
   const columnDefs = [
     { header: 'Employee', key: 'employee_name' },
@@ -13,7 +28,7 @@ const App: React.FC = () => {
     { header: 'Leave Type', key: 'leave_type' },
     { header: 'Reason', key: 'reason' },
     { header: 'Manager Name', key: 'manager_name' },
-    { header: 'Manager Decision', key: 'manager_decision' },
+    { header: 'Manager Decision', key: 'manager_decision',cellRenderer: renderManagerDecision },
   ];
 // Sample data for the SimpleTable
   const data = [
